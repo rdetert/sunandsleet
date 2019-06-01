@@ -1,0 +1,19 @@
+h1 Listing forecasts
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @forecasts.each do |forecast|
+      tr
+        td = link_to 'Show', forecast
+        td = link_to 'Edit', edit_forecast_path(forecast)
+        td = link_to 'Destroy', forecast, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Forecast', new_forecast_path

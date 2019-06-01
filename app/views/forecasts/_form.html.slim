@@ -1,0 +1,9 @@
+= form_for @forecast do |f|
+  - if @forecast.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@forecast.errors.count, "error")} prohibited this forecast from being saved:"
+      ul
+        - @forecast.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit
