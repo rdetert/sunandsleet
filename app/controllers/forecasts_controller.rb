@@ -42,7 +42,10 @@ class ForecastsController < ApplicationController
       if @forecast.blank?
         @forecast = Forecast.new(search: params[:zipcode])
       end
-      load_or_create_forecast
+      unless load_or_create_forecast
+        flash[:alert] = "Couldn't find #{@forecast.search}. Make sure to include the state if entering a city."
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -9,6 +9,7 @@ class Forecast < ApplicationRecord
 	after_initialize :set_location, if: :new_record?
 	before_save :process_weather_data
 
+	validates :location, absence: false
 	validates :search, presence: true
 
 
