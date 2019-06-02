@@ -2,11 +2,4 @@ h1
 	| Sun and Sleet
 
 
-=form_for Forecast.new do |f|
-
-	.row.justify-content-start
-		.col-md-3
-			=f.text_field :search, placeholder: 'City, State or Zip Code'
-
-		.col-md-3
-			=f.submit 'Search'
+=render 'shared/search'

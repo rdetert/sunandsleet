@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
 
-  has_many :forecasts, dependent: :destroy
+  has_one :forecast, dependent: :destroy
 
 
   def has_dst?; daylight_savings; end
@@ -44,6 +44,10 @@ class Location < ApplicationRecord
 
   def coords
   	[latitude, longitude]
+  end
+
+  def to_s
+    "#{city}, #{state}"
   end
 
 

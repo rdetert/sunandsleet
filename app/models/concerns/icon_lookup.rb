@@ -5,19 +5,18 @@ module IconLookup
 
     def icon_image
       icon_map = {
-        "clear-day": "Sun.svg",
-        "clear-night": "Moon.svg",
-        "rain": "Cloud-Rain.svg",
-        "snow": "Snowflake.svg",
-        "sleet": "Cloud-Snow.svg",
-        "wind": "Wind.svg",
-        "fog": "Cloud-Fog-Alt.svg",
-        "cloudy": "Cloud.svg",
-        "partly-cloudy-day": "Cloud-Sun.svg",
-        "partly-cloudy-night": "Cloud-Moon.svg"
+        "clear-day": "Sun.png",
+        "clear-night": "Moon.png",
+        "rain": "Cloud-Rain.png",
+        "snow": "Snowflake.png",
+        "sleet": "Cloud-Snow.png",
+        "wind": "Wind.png",
+        "fog": "Cloud-Fog-Alt.png",
+        "cloudy": "Cloud.png",
+        "partly-cloudy-day": "Cloud-Sun.png",
+        "partly-cloudy-night": "Cloud-Moon.png"
       }
-      file = icon_map[icon.to_sym]
-      "/climacons-master/SVG/#{file}" unless file.blank?
+      icon_map[icon.to_sym]
     end
   end
 

@@ -1,6 +1,34 @@
-p#notice = notice
+p.mt-3
+	-if @cached
+		| Cached
+	-else
+		| Not Cached
 
+=cache @forecast.cache_key_with_version, skip_digest: true, expires_in: (Rails.env.production? ? 30.minutes : 5.seconds)
 
-=> link_to 'Edit', edit_forecast_path(@forecast)
-'|
-=< link_to 'Back', forecasts_path
+	#currently
+		=image_tag @forecast.icon_image
+
+		.temp-group
+			#current-temp
+				| #{@forecast.current_temp.round} &deg;F
+			#today-lo
+				| #{@forecast.low_temp.round} &deg;F
+			#today-hi
+				| #{@forecast.high_temp.round} &deg;F
+
+	h1 =@forecast.location
+
+	h2 =@forecast.location.zipcode
+
+	hr
+
+	ol#extended-forecasts
+		-@forecast.extended_forecasts.each do |ef|
+			li
+				.day
+					= ef.date.strftime("%^a")
+				.lo
+					| #{ef.low_temp.round} &deg;F
+				.hi
+					| #{ef.high_temp.round} &deg;F

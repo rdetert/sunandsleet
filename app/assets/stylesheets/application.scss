@@ -1,4 +1,12 @@
 @import "bourbon";
 @import "bootstrap";
+@import "mixin";
 @import "forecasts";
-@import "main";
+
+a.navbar-brand {
+	font-weight: bold;
+}
+
+input[type=text]#forecast_search {
+	width: 230px;
+}

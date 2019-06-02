@@ -1,0 +1,16 @@
+@mixin lo {
+	&:before {
+		content: 'lo: '
+	}
+	&::after {
+		content: '   |   ';
+		white-space: pre;
+		color: #ccc;
+	}
+}
+
+@mixin hi {
+	&:before {
+		content: 'hi: '
+	}
+}

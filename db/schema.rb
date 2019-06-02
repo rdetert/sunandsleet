@@ -27,17 +27,13 @@ ActiveRecord::Schema.define(version: 2019_06_01_074107) do
     t.integer "location_id"
     t.datetime "date"
     t.string "search"
-    t.float "latitude"
-    t.float "longitude"
     t.float "current_temp"
     t.float "high_temp"
     t.float "low_temp"
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["latitude"], name: "index_forecasts_on_latitude"
     t.index ["location_id"], name: "index_forecasts_on_location_id"
-    t.index ["longitude"], name: "index_forecasts_on_longitude"
   end
 
   create_table "locations", force: :cascade do |t|

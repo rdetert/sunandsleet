@@ -6,9 +6,6 @@ class CreateForecasts < ActiveRecord::Migration[5.2]
     	t.datetime :date
     	t.string   :search
 
-    	t.float :latitude, index: true
-    	t.float :longitude, index: true
-
     	t.float :current_temp
     	t.float :high_temp
     	t.float :low_temp

@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+> bundle install
 
-* Ruby version
+> rake db:migrate
 
-* System dependencies
+> rake locations:seed
 
-* Configuration
+> rails s
 
-* Database creation
+Goto http://localhost:3000
 
-* Database initialization
+Weather API provided by http://forecast.io
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Zipcodes + GPS loaded from database. Source file is several years old so some zipcodes may have changed slightly over the years.

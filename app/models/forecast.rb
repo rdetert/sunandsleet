@@ -6,6 +6,7 @@ class Forecast < ApplicationRecord
 	belongs_to :location
 	has_many :extended_forecasts, dependent: :destroy
 
+	after_initialize :set_location, if: :new_record?
 	before_save :process_weather_data
 
 	validates :search, presence: true
@@ -13,11 +14,6 @@ class Forecast < ApplicationRecord
 
 	def to_param
 		location.zipcode
-	end
-
-	def self.process(search)
-		location = get_location(search)
-		Forecast.new location: location, search: search
 	end
 
 	def self.api_lookup(location)
@@ -29,21 +25,28 @@ class Forecast < ApplicationRecord
 	end
 
 
-	def self.get_location(search)
+	def self.set_location(search)
 		Location.string_lookup(search)
 	end
-	def get_location
-		self.location = Forecast.get_location(search)
+	def set_location
+		self.location = Forecast.set_location(search)
 	end
 
+	def already_exists?
+		load_existing.present?
+	end
 
+	def load_existing
+		Location.find(location.id).forecast if location.present?
+	end
 
 	protected
 
 		def process_weather_data
 			api_lookup
 
-			location.forecasts.destroy_all
+			# delete the old forecast and reload new one
+			Location.find(location.id).forecast.try(:destroy)
 
 			currently = api_data.currently
 			self.date = Time.at(currently.time)

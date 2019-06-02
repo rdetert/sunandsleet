@@ -1,0 +1,64 @@
+#currently {
+
+	margin-top: 2rem;
+
+	.temp-group {
+		display: inline-block;
+		margin-bottom: 2rem;
+	}
+
+	#current-temp {
+		font-size: 4rem;
+	}
+
+	#today-lo, #today-hi {
+		font-size: 1.85rem;
+		font-weight: 200;
+		font-style: italic;
+		display: inline-block;
+	}
+
+	#today-lo {
+		@include lo;
+	}
+
+	#today-hi {
+		@include hi
+	}
+
+	img {
+		display: inline-block;
+		position: relative;
+		$height: 150px;
+		height: $height;
+		margin-right: 30px;
+		vertical-align: top;
+	}
+
+}
+
+ol#extended-forecasts {
+	list-style-type: none;
+	padding-left: 0;
+
+	li {
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+		border-bottom: 1px #ddd dotted;
+	}
+
+	.day {
+		font-weight: bold;
+	}
+	.lo, .hi {
+		display: inline-block;
+	}
+	.lo {
+		@include lo;
+	}
+
+	.hi {
+		@include hi;
+	}
+
+}
