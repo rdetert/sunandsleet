@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.time_zone = 'Pacific Time (US & Canada)'
+  config.time_zone = 'UTC'  #'Pacific Time (US & Canada)'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
