@@ -52,6 +52,7 @@ class Forecast < ApplicationRecord
 			currently = api_data.currently
 			self.date = Time.at(currently.time)
 			self.current_temp = currently.temperature
+			self.icon = currently.icon
 
 			daily = api_data.daily.data
 
@@ -60,7 +61,6 @@ class Forecast < ApplicationRecord
 				if time.to_date == Time.now.to_date
 					self.high_temp = day.temperatureHigh
 					self.low_temp  = day.temperatureLow
-					self.icon 		 = day.icon
 				else
 					ef = ExtendedForecast.new date: time, icon: day.icon, high_temp: day.temperatureHigh, low_temp: day.temperatureLow
 					self.extended_forecasts << ef
