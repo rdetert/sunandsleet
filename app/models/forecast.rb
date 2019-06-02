@@ -45,8 +45,9 @@ class Forecast < ApplicationRecord
 		def process_weather_data
 			api_lookup
 
-			# delete the old forecast and reload new one
-			Location.find(location.id).forecast.try(:destroy)
+			# delete the old forecast and save new one
+			# Location.find(location.id).forecast.try(:destroy)
+			extended_forecasts.clear
 
 			currently = api_data.currently
 			self.date = Time.at(currently.time)

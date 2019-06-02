@@ -21,11 +21,14 @@ class ForecastsController < ApplicationController
   private
 
     def load_or_create_forecast
+      # debugger
       if @forecast.already_exists?
         @forecast = @forecast.load_existing
         if fragment_exist?(@forecast.cache_key_with_version)
           @success = true
         else
+          # debugger
+          @forecast.touch
           @success = @forecast.save
         end
       else
@@ -39,8 +42,8 @@ class ForecastsController < ApplicationController
       @forecast = Location.where(zipcode: params[:zipcode]).first.forecast
       if @forecast.blank?
         @forecast = Forecast.new(search: params[:zipcode])
-        load_or_create_forecast
       end
+      load_or_create_forecast
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
