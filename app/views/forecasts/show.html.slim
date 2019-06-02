@@ -27,7 +27,7 @@ p.mt-3
 		-@forecast.extended_forecasts.each do |ef|
 			li
 				.day
-					= ef.date.utc.strftime("%^a")
+					= ef.date.strftime("%^a")
 				.lo
 					| #{ef.low_temp.round} &deg;F
 				.hi

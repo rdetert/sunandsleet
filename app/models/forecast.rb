@@ -55,8 +55,8 @@ class Forecast < ApplicationRecord
 			daily = api_data.daily.data
 
 			daily.each do |day|
-				time = Time.at(day.time).utc
-				if time.to_date == Time.now.utc.to_date
+				time = Time.at(day.time)
+				if time.to_date == Time.now.to_date
 					self.high_temp = day.temperatureHigh
 					self.low_temp  = day.temperatureLow
 					self.icon 		 = day.icon
