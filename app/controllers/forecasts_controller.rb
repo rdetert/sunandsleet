@@ -12,7 +12,7 @@ class ForecastsController < ApplicationController
       if load_or_create_forecast
         format.html { redirect_to @forecast }
       else
-        format.html { redirect_to rocklin_path, alert: "Couldn't find #{@forecast.search}" }
+        format.html { redirect_to rocklin_path, alert: "Couldn't find #{@forecast.search}. Make sure to include the state if entering a city." }
       end
     end
   end
