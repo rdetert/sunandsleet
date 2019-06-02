@@ -37,7 +37,7 @@ class ForecastsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_forecast
-      @forecast = Location.where(zipcode: params[:zipcode]).first.forecast
+      @forecast = Location.where(zipcode: params[:zipcode]).first.try(:forecast)
       if @forecast.blank?
         @forecast = Forecast.new(search: params[:zipcode])
       end
