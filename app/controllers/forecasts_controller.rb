@@ -21,6 +21,7 @@ class ForecastsController < ApplicationController
   private
 
     def load_or_create_forecast
+      # debugger
       if @forecast.already_exists?
         @forecast = @forecast.load_existing
         if fragment_exist?(@forecast.cache_key_with_version)
