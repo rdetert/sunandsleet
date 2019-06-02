@@ -2,6 +2,10 @@ class ForecastsController < ApplicationController
   before_action :set_forecast, only: [:show]
 
   def show
+    unless load_or_create_forecast
+      flash[:alert] = "Couldn't find #{@forecast.search}. Make sure to include the state if entering a city."
+      redirect_to root_path
+    end
     @cached = fragment_exist?(@forecast.cache_key_with_version)
   end
 
@@ -41,10 +45,6 @@ class ForecastsController < ApplicationController
       @forecast = Location.where(zipcode: params[:zipcode]).first.try(:forecast)
       if @forecast.blank?
         @forecast = Forecast.new(search: params[:zipcode])
-      end
-      unless load_or_create_forecast
-        flash[:alert] = "Couldn't find #{@forecast.search}. Make sure to include the state if entering a city."
-        redirect_to root_path
       end
     end
 
