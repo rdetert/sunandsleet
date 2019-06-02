@@ -11,6 +11,10 @@ class ForecastsController < ApplicationController
 
   def create
     @forecast = Forecast.new(forecast_params)
+    if @forecast.search.blank?
+      redirect_to root_path
+      return
+    end
 
     respond_to do |format|
       if load_or_create_forecast
