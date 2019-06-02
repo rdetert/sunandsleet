@@ -9,7 +9,7 @@ class ForecastsController < ApplicationController
     @forecast = Forecast.new(forecast_params)
 
     respond_to do |format|
-      if set_or_create_forecast
+      if load_or_create_forecast
         format.html { redirect_to @forecast }
       else
         format.html { redirect_to rocklin_path, alert: "Couldn't find #{@forecast.search}" }
@@ -20,7 +20,7 @@ class ForecastsController < ApplicationController
 
   private
 
-    def set_or_create_forecast
+    def load_or_create_forecast
       if @forecast.already_exists?
         @forecast = @forecast.load_existing
         if fragment_exist?(@forecast.cache_key_with_version)
@@ -39,7 +39,7 @@ class ForecastsController < ApplicationController
       @forecast = Location.where(zipcode: params[:zipcode]).first.forecast
       if @forecast.blank?
         @forecast = Forecast.new(search: params[:zipcode])
-        set_or_create_forecast
+        load_or_create_forecast
       end
     end
 

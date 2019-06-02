@@ -15,6 +15,9 @@ html
     -if flash[:alert]
       .alert.alert-danger(role="alert")
         =flash[:alert]
+        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+          span(aria-hidden="true")
+            | &times;
 
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       a.navbar-brand[href="/"]
@@ -31,7 +34,7 @@ html
   			.col
 			    = yield
 
-      footer
-        .row
-          .col
-            | &copy; Ryan Detert - #{link_to "ryanforyou.com", "https://ryanforyou.com", target: :blank}
+    footer.container
+      .row
+        .col
+          | Hire Ryan Detert - #{link_to "ryanforyou.com", "https://ryanforyou.com", target: :blank}
